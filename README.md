@@ -27,3 +27,10 @@ Mutate Probability = 0.15.
 3. Run 'npm install' in terminal in the folder
 4. Run 'npm start' in the terminal to start
 5. The site will run at localhost:3000
+
+## The Algorithm
+
+The Algorithm is in src/genAlgoClasses/
+
+Individual.js contains the Fitness Function and Mutation function
+Population.js contains calculation of next generation and crossover
