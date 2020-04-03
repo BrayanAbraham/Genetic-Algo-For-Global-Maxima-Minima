@@ -10,7 +10,10 @@ export const Footer = () => {
           Brayan Abraham
         </a>
         . Github:{" "}
-        <a href="#!" className="text-primary">
+        <a
+          href="https://github.com/BrayanAbraham/Genetic-Algo-For-Global-Maxima-Minima"
+          className="text-primary"
+        >
           Click Here
         </a>
       </div>
