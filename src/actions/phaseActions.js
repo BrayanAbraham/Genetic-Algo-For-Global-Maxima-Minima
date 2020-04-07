@@ -1,19 +1,30 @@
-import { SET_EQUATION, SHOW_DATA, SET_VARIABLE } from "./types";
+import {
+  SET_EQUATION,
+  SHOW_DATA,
+  SET_VARIABLE,
+  SET_DESCRIPTION,
+} from "./types";
 
-export const setEquation = () => dispatch => {
+export const setDescription = () => (dispatch) => {
   dispatch({
-    type: SET_EQUATION
+    type: SET_DESCRIPTION,
   });
 };
 
-export const showData = () => dispatch => {
+export const setEquation = () => (dispatch) => {
   dispatch({
-    type: SHOW_DATA
+    type: SET_EQUATION,
   });
 };
 
-export const setVariable = () => dispatch => {
+export const showData = () => (dispatch) => {
   dispatch({
-    type: SET_VARIABLE
+    type: SHOW_DATA,
+  });
+};
+
+export const setVariable = () => (dispatch) => {
+  dispatch({
+    type: SET_VARIABLE,
   });
 };

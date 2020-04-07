@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Instructions = () => {
+const Instructions = () => {
   return (
     <div className="container">
       <div className="mx-5 text-center">
@@ -22,3 +22,5 @@ export const Instructions = () => {
     </div>
   );
 };
+
+export default Instructions;
