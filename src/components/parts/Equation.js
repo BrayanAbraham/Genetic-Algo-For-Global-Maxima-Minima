@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { showData, setVariable } from "../../actions/phaseActions";
 import {
   setSettings,
-  initializePopulation
+  initializePopulation,
 } from "../../actions/populationActions";
 import { settingValidation } from "../../validation/settingValidation";
 import { setAlert, clearAlert } from "../../actions/alertActions";
@@ -16,31 +16,32 @@ const Equation = ({
   setAlert,
   clearAlert,
   setVariable,
-  initializePopulation
+  initializePopulation,
 }) => {
   const [sett, setsett] = useState(population);
 
-  const onEqChange = e => setsett({ ...sett, [e.target.name]: e.target.value });
+  const onEqChange = (e) =>
+    setsett({ ...sett, [e.target.name]: e.target.value.toLowerCase() });
 
-  const onChange = e =>
+  const onChange = (e) =>
     setsett({
       ...sett,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
 
-  const maxChange = e => {
+  const maxChange = (e) => {
     const maximum = sett.maximum;
     maximum[e.target.name] = e.target.value;
     setsett({ ...sett, maximum: maximum });
   };
 
-  const minChange = e => {
+  const minChange = (e) => {
     const minimum = sett.minimum;
     minimum[e.target.name] = e.target.value;
     setsett({ ...sett, minimum: minimum });
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const validation = settingValidation(sett);
     if (validation.isValid) {
@@ -61,16 +62,41 @@ const Equation = ({
     crossProbability,
     mutateProbability,
     mode,
-    ignore
+    ignore,
   } = sett;
 
   return (
     <div className="container">
       <div className="mt-5">
+        <div className="mb-2 text-center text-primary">
+          <h4>Rules to write the expression:</h4>
+          <div className="row">
+            <div className="col-md-6">
+              <ul className="list-group">
+                <li className="list-group-item">
+                  <strong>Variables: </strong>x1,x2,x3....
+                </li>
+                <li className="list-group-item">
+                  <strong>Exponent Function: </strong>exp(x1)
+                </li>
+              </ul>
+            </div>
+            <div className="col-md-6">
+              <ul className="list-group">
+                <li className="list-group-item">
+                  <strong>Trignometry: </strong>sin(x1),cos(x1),tan(x1).....
+                </li>
+                <li className="list-group-item">
+                  <strong>Logarithm: </strong>log(x1)
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <div className="mb-2">
           <button
             className="btn btn-outline-danger "
-            onClick={e => setVariable()}
+            onClick={(e) => setVariable()}
           >
             Change Number of Variables
           </button>
@@ -79,14 +105,14 @@ const Equation = ({
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <label htmlFor="equation" className="input-group-text">
-                Equation
+                Expression
               </label>
             </div>
             <input
               type="text"
               name="equation"
               value={equation}
-              placeholder="Enter Equation"
+              placeholder="Enter Expression"
               className="form-control"
               onChange={onEqChange}
             />
@@ -217,7 +243,7 @@ const Equation = ({
                       type="checkbox"
                       name="ignore"
                       value={ignore}
-                      onChange={e => setsett({ ...sett, ignore: !ignore })}
+                      onChange={(e) => setsett({ ...sett, ignore: !ignore })}
                     />
                   </div>
                 </div>
@@ -250,11 +276,11 @@ Equation.propTypes = {
   setAlert: PropTypes.func.isRequired,
   clearAlert: PropTypes.func.isRequired,
   setVariable: PropTypes.func.isRequired,
-  initializePopulation: PropTypes.func.isRequired
+  initializePopulation: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  population: state.population
+const mapStateToProps = (state) => ({
+  population: state.population,
 });
 
 export default connect(mapStateToProps, {
@@ -263,5 +289,5 @@ export default connect(mapStateToProps, {
   setAlert,
   clearAlert,
   setVariable,
-  initializePopulation
+  initializePopulation,
 })(Equation);
