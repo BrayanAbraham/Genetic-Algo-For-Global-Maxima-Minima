@@ -227,6 +227,11 @@ const Description = ({ setVariable }) => {
           prevent premature convergence.
         </p>
       </div>
+      <div className="text-right mb-3">
+        <button className="btn btn-primary" onClick={() => setVariable()}>
+          RUN ALGORITHM
+        </button>
+      </div>
     </div>
   );
 };
