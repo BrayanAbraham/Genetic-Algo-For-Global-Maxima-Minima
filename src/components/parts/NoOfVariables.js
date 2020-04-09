@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { variableValidation } from "../../validation/settingValidation";
-import { setEquation } from "../../actions/phaseActions";
+import { setEquation, setDescription } from "../../actions/phaseActions";
 import {
   setNumberOfVariables,
-  clearSetting
+  clearSetting,
 } from "../../actions/populationActions";
 import { setAlert } from "../../actions/alertActions";
 
@@ -14,11 +14,12 @@ const NoOfVariables = ({
   setEquation,
   setNumberOfVariables,
   clearSetting,
-  setAlert
+  setAlert,
+  setDescription,
 }) => {
   const [variables, setvariables] = useState(numberOfVariables);
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const validation = variableValidation(variables);
     if (!validation.isValid) {
@@ -33,6 +34,11 @@ const NoOfVariables = ({
   return (
     <div className="container ">
       <div className="mt-5">
+        <div className="text-left">
+          <button className="btn btn-primary" onClick={() => setDescription()}>
+            GO TO DESCRIPTION
+          </button>
+        </div>
         <div className="row">
           <div className="col-md-3" />
           <div className="col-md-6">
@@ -47,7 +53,7 @@ const NoOfVariables = ({
                     value={variables}
                     name="numberofvariables"
                     className="form-control"
-                    onChange={e => setvariables(e.target.value)}
+                    onChange={(e) => setvariables(e.target.value)}
                   />
                   <div className="input-group-append">
                     <button className="btn btn-primary" onClick={onSubmit}>
@@ -69,16 +75,18 @@ NoOfVariables.propTypes = {
   setNumberOfVariables: PropTypes.func.isRequired,
   clearSetting: PropTypes.func.isRequired,
   setAlert: PropTypes.func.isRequired,
-  population: PropTypes.object.isRequired
+  population: PropTypes.object.isRequired,
+  setDescription: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = State => ({
-  population: State.population
+const mapStateToProps = (State) => ({
+  population: State.population,
 });
 
 export default connect(mapStateToProps, {
   setEquation,
   setNumberOfVariables,
   clearSetting,
-  setAlert
+  setAlert,
+  setDescription,
 })(NoOfVariables);

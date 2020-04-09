@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { setVariable, setEquation } from "../../actions/phaseActions";
+import {
+  setVariable,
+  setEquation,
+  setDescription,
+} from "../../actions/phaseActions";
 import Population from "../population/Population";
 import IndividualData from "../population/IndividualData";
 import {
   initializePopulation,
-  nextGeneration
+  nextGeneration,
 } from "../../actions/populationActions";
 import {
   addPerformancePoint,
-  clearPerformance
+  clearPerformance,
 } from "../../actions/graphActions";
 import PerformanceGraph from "../graphs/PerformanceGraph";
 
@@ -20,10 +24,11 @@ class Data extends Component {
     this.state = {
       fit: false,
       timerOn: false,
-      switcher: false
+      switcher: false,
     };
     this.onResetSet = this.onResetSet.bind(this);
     this.onResetVar = this.onResetVar.bind(this);
+    this.onDescription = this.onDescription.bind(this);
     this.startTimer = this.startTimer.bind(this);
   }
 
@@ -41,6 +46,14 @@ class Data extends Component {
     }
     this.props.clearPerformance();
     this.props.setVariable();
+  };
+
+  onDescription = () => {
+    if (this.state.timerOn) {
+      this.pauseTimer();
+    }
+    this.props.clearPerformance();
+    this.props.setDescription();
   };
 
   onResetSet = () => {
@@ -90,7 +103,7 @@ class Data extends Component {
       crossProbability,
       mutateProbability,
       mode,
-      population
+      population,
     } = this.props.population;
 
     const {
@@ -102,20 +115,25 @@ class Data extends Component {
       fittestIndi,
       fittestPopulation,
       currentPopulation,
-      fittestFitness
+      fittestFitness,
     } = population;
 
     return (
       <div className="container mt-5">
         <div className="row">
-          <div className="col-md-6 text-center mt-1">
+          <div className="col-md-4 text-center mt-1">
             <button className="btn btn-primary " onClick={this.onResetVar}>
               Reset Number of Variables
             </button>
           </div>
-          <div className="col-md-6 text-center mt-1">
+          <div className="col-md-4 text-center mt-1">
             <button className="btn btn-primary " onClick={this.onResetSet}>
               Reset Settings
+            </button>
+          </div>
+          <div className="col-md-4 text-center mt-1">
+            <button className="btn btn-primary " onClick={this.onDescription}>
+              Go To Description
             </button>
           </div>
         </div>
@@ -210,7 +228,7 @@ class Data extends Component {
         </div>
         <button
           className="btn btn-primary my-3"
-          onClick={e => this.setState({ fit: !fit })}
+          onClick={(e) => this.setState({ fit: !fit })}
         >
           {fit ? "See Current population" : "See Fittest Population"}
         </button>
@@ -232,11 +250,12 @@ Data.propTypes = {
   initializePopulation: PropTypes.func.isRequired,
   nextGeneration: PropTypes.func.isRequired,
   addPerformancePoint: PropTypes.func.isRequired,
-  clearPerformance: PropTypes.func.isRequired
+  clearPerformance: PropTypes.func.isRequired,
+  setDescription: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = State => ({
-  population: State.population
+const mapStateToProps = (State) => ({
+  population: State.population,
 });
 
 export default connect(mapStateToProps, {
@@ -245,5 +264,6 @@ export default connect(mapStateToProps, {
   initializePopulation,
   addPerformancePoint,
   nextGeneration,
-  clearPerformance
+  clearPerformance,
+  setDescription,
 })(Data);

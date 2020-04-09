@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { showData, setVariable } from "../../actions/phaseActions";
+import {
+  showData,
+  setVariable,
+  setDescription,
+} from "../../actions/phaseActions";
 import {
   setSettings,
   initializePopulation,
@@ -17,6 +21,7 @@ const Equation = ({
   clearAlert,
   setVariable,
   initializePopulation,
+  setDescription,
 }) => {
   const [sett, setsett] = useState(population);
 
@@ -95,175 +100,184 @@ const Equation = ({
         </div>
         <div className="mb-2">
           <button
-            className="btn btn-outline-danger "
+            className="btn btn-outline-danger float-left"
             onClick={(e) => setVariable()}
           >
             Change Number of Variables
           </button>
+          <button
+            className="btn btn-outline-primary float-right"
+            onClick={(e) => setDescription()}
+          >
+            Go to Description
+          </button>
         </div>
-        <form>
-          <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <label htmlFor="equation" className="input-group-text">
-                Expression
-              </label>
-            </div>
-            <input
-              type="text"
-              name="equation"
-              value={equation}
-              placeholder="Enter Expression"
-              className="form-control"
-              onChange={onEqChange}
-            />
-          </div>
-          <div className="row">
-            <div className="col-md-6">
-              {minimum.map((mini, i) => (
-                <div className="input-group mb-3" key={i}>
-                  <div className="input-group-prepend">
-                    <label htmlFor={i} className="input-group-text">
-                      Minimum value of x{i + 1}
-                    </label>
-                  </div>
-                  <input
-                    type="number"
-                    name={i}
-                    className="form-control"
-                    value={mini}
-                    onChange={minChange}
-                    required
-                  />
-                </div>
-              ))}
-            </div>
-            <div className="col-md-6">
-              {maximum.map((maxi, i) => (
-                <div className="input-group mb-3" key={i}>
-                  <div className="input-group-prepend">
-                    <label htmlFor={i} className="input-group-text">
-                      Maximum value of x{i + 1}
-                    </label>
-                  </div>
-                  <input
-                    type="number"
-                    name={i}
-                    className="form-control"
-                    value={maxi}
-                    onChange={maxChange}
-                    required
-                  />
-                </div>
-              ))}
-            </div>
-            <div className="col-md-6">
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <label htmlFor="size" className="input-group-text">
-                    Population Size
-                  </label>
-                </div>
-                <input
-                  type="number"
-                  name="size"
-                  className="form-control"
-                  value={size}
-                  onChange={onChange}
-                />
+        <br />
+        <div className="clearfix mt-4">
+          <form>
+            <div className="input-group mb-3">
+              <div className="input-group-prepend">
+                <label htmlFor="equation" className="input-group-text">
+                  Expression
+                </label>
               </div>
+              <input
+                type="text"
+                name="equation"
+                value={equation}
+                placeholder="Enter Expression"
+                className="form-control"
+                onChange={onEqChange}
+              />
             </div>
-            <div className="col-md-6">
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <label
-                    htmlFor="crossProbability"
-                    className="input-group-text"
-                  >
-                    Cross Probability
-                  </label>
-                </div>
-                <input
-                  type="number"
-                  name="crossProbability"
-                  className="form-control"
-                  placeholder="Between 0 and 1"
-                  value={crossProbability}
-                  onChange={onChange}
-                  required
-                />
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <label
-                    htmlFor="mutateProbability"
-                    className="input-group-text"
-                  >
-                    Mutate Probability
-                  </label>
-                </div>
-                <input
-                  type="number"
-                  name="mutateProbability"
-                  className="form-control"
-                  placeholder="Between 0 and 1"
-                  value={mutateProbability}
-                  onChange={onChange}
-                  required
-                />
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <label htmlFor="maxmin" className="input-group-text">
-                    Mode
-                  </label>
-                </div>
-                <select
-                  name="mode"
-                  className="custom-select"
-                  value={mode}
-                  onChange={onEqChange}
-                >
-                  <option value="" disabled>
-                    Choose...
-                  </option>
-                  <option value="maxima">Maxima</option>
-                  <option value="minima">Minima</option>
-                </select>
-              </div>
-            </div>
-            <div className="col-md-12 text-center">
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <div className="input-group-text">
+            <div className="row">
+              <div className="col-md-6">
+                {minimum.map((mini, i) => (
+                  <div className="input-group mb-3" key={i}>
+                    <div className="input-group-prepend">
+                      <label htmlFor={i} className="input-group-text">
+                        Minimum value of x{i + 1}
+                      </label>
+                    </div>
                     <input
-                      type="checkbox"
-                      name="ignore"
-                      value={ignore}
-                      onChange={(e) => setsett({ ...sett, ignore: !ignore })}
+                      type="number"
+                      name={i}
+                      className="form-control"
+                      value={mini}
+                      onChange={minChange}
+                      required
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="col-md-6">
+                {maximum.map((maxi, i) => (
+                  <div className="input-group mb-3" key={i}>
+                    <div className="input-group-prepend">
+                      <label htmlFor={i} className="input-group-text">
+                        Maximum value of x{i + 1}
+                      </label>
+                    </div>
+                    <input
+                      type="number"
+                      name={i}
+                      className="form-control"
+                      value={maxi}
+                      onChange={maxChange}
+                      required
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="col-md-6">
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <label htmlFor="size" className="input-group-text">
+                      Population Size
+                    </label>
+                  </div>
+                  <input
+                    type="number"
+                    name="size"
+                    className="form-control"
+                    value={size}
+                    onChange={onChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <label
+                      htmlFor="crossProbability"
+                      className="input-group-text"
+                    >
+                      Cross Probability
+                    </label>
+                  </div>
+                  <input
+                    type="number"
+                    name="crossProbability"
+                    className="form-control"
+                    placeholder="Between 0 and 1"
+                    value={crossProbability}
+                    onChange={onChange}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <label
+                      htmlFor="mutateProbability"
+                      className="input-group-text"
+                    >
+                      Mutate Probability
+                    </label>
+                  </div>
+                  <input
+                    type="number"
+                    name="mutateProbability"
+                    className="form-control"
+                    placeholder="Between 0 and 1"
+                    value={mutateProbability}
+                    onChange={onChange}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <label htmlFor="maxmin" className="input-group-text">
+                      Mode
+                    </label>
+                  </div>
+                  <select
+                    name="mode"
+                    className="custom-select"
+                    value={mode}
+                    onChange={onEqChange}
+                  >
+                    <option value="" disabled>
+                      Choose...
+                    </option>
+                    <option value="maxima">Maxima</option>
+                    <option value="minima">Minima</option>
+                  </select>
+                </div>
+              </div>
+              <div className="col-md-12 text-center">
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <div className="input-group-text">
+                      <input
+                        type="checkbox"
+                        name="ignore"
+                        value={ignore}
+                        onChange={(e) => setsett({ ...sett, ignore: !ignore })}
+                      />
+                    </div>
+                  </div>
+                  <div className="input-group-append">
+                    <input
+                      type="text"
+                      value="Ignore Range"
+                      className="form-control bg-light"
+                      disabled
                     />
                   </div>
                 </div>
-                <div className="input-group-append">
-                  <input
-                    type="text"
-                    value="Ignore Range"
-                    className="form-control bg-light"
-                    disabled
-                  />
-                </div>
               </div>
             </div>
-          </div>
-          <div className="text-center">
-            <button className="btn btn-primary" onClick={onSubmit}>
-              Submit
-            </button>
-          </div>
-        </form>
+            <div className="text-center">
+              <button className="btn btn-primary" onClick={onSubmit}>
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
@@ -277,6 +291,7 @@ Equation.propTypes = {
   clearAlert: PropTypes.func.isRequired,
   setVariable: PropTypes.func.isRequired,
   initializePopulation: PropTypes.func.isRequired,
+  setDescription: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -290,4 +305,5 @@ export default connect(mapStateToProps, {
   clearAlert,
   setVariable,
   initializePopulation,
+  setDescription,
 })(Equation);
