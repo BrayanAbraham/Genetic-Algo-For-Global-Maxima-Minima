@@ -36,10 +36,19 @@ class Individual {
   };
 
   getFitness = (exp, maxmin) => {
-    return maxmin === "maxima" ? this.#getValue(exp) : -1 * this.#getValue(exp);
+    var result = this.getValue(exp);
+    if (maxmin === "minima") {
+      if (typeof result === "number") {
+        result *= -1;
+      } else {
+        result.re *= -1;
+        result.im *= -1;
+      }
+    }
+    return result;
   };
 
-  #getValue = exp => {
+  getValue = (exp) => {
     var scope = {};
     for (let i = 0; i < this.DNAset.length; i++) {
       var k = "x" + (i + 1);

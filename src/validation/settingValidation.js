@@ -1,6 +1,6 @@
 import { evaluate } from "mathjs";
 
-export const variableValidation = noOfVariables => {
+export const variableValidation = (noOfVariables) => {
   let errors = {};
   let isValid = true;
   if (noOfVariables === "") {
@@ -19,7 +19,7 @@ export const variableValidation = noOfVariables => {
   return { errors, isValid };
 };
 
-export const settingValidation = setting => {
+export const settingValidation = (setting) => {
   let errors = {};
   let isValid = true;
   const {
@@ -29,7 +29,7 @@ export const settingValidation = setting => {
     equation,
     size,
     crossProbability,
-    mutateProbability
+    mutateProbability,
   } = setting;
   if (mode === "") {
     isValid = false;
@@ -66,18 +66,18 @@ export const settingValidation = setting => {
     setting.size = parseInt(size);
     setting.crossProbability = parseFloat(crossProbability);
     setting.mutateProbability = parseFloat(mutateProbability);
-    setting.maximum = maximum.map(max => parseFloat(max));
-    setting.minimum = minimum.map(min => parseFloat(min));
+    setting.maximum = maximum.map((max) => parseFloat(max));
+    setting.minimum = minimum.map((min) => parseFloat(min));
     var check = false;
     for (let i = 0; i < minimum.length; i++) {
-      if (minimum[i] > maximum[i]) {
+      if (minimum[i] >= maximum[i]) {
         check = true;
         break;
       }
     }
     if (check) {
       isValid = false;
-      errors.msg = "Minimum Must be Less than or Equal to Maximum";
+      errors.msg = "Minimum Must be Less than Maximum";
     } else {
       try {
         var scope = {};
@@ -105,7 +105,7 @@ export const settingValidation = setting => {
   return { setting, errors, isValid };
 };
 
-const checkArray = array => {
+const checkArray = (array) => {
   for (let i = 0; i < array.length; i++) {
     let x = parseFloat(array);
     if (isNaN(x) || x === null) {

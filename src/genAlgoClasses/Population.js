@@ -12,11 +12,11 @@ class Population {
     equation,
     ignore
   ) {
-    this.currentPopulation = this.generate(size, minv, maxv);
     this.equation = equation;
+    this.currentPopulation = this.generate(size, minv, maxv);
     this.maximum = maxv;
     this.minimum = minv;
-    this.currentFitness = this.currentPopulation.map(individual =>
+    this.currentFitness = this.currentPopulation.map((individual) =>
       individual.getFitness(this.equation, mode)
     );
     this.crossProbability = crossProbability;
@@ -38,10 +38,18 @@ class Population {
       .fill(null)
       .map(() => {
         var DNA = [];
-        for (let i = 0; i < minv.length; i++) {
-          DNA.push(decimal2IEEE(Math.random() * (maxv[i] - minv[i]) + minv[i]));
+        while (true) {
+          DNA = [];
+          for (let i = 0; i < minv.length; i++) {
+            DNA.push(
+              decimal2IEEE(Math.random() * (maxv[i] - minv[i]) + minv[i])
+            );
+          }
+          const result = new Individual(DNA);
+          if (typeof result.getValue(this.equation) === "number") {
+            return result;
+          }
         }
-        return new Individual(DNA);
       });
     return population;
   };
@@ -55,7 +63,7 @@ class Population {
       newPopulation.splice(-1, 1);
     }
     this.currentPopulation = newPopulation;
-    this.currentFitness = this.currentPopulation.map(individual =>
+    this.currentFitness = this.currentPopulation.map((individual) =>
       individual.getFitness(this.equation, this.mode)
     );
     this.generationNumber += 1;
@@ -69,7 +77,7 @@ class Population {
       Math.random() < this.crossProbability
         ? this.crossover(mom, dad)
         : [mom, dad];
-    const mutatedChildren = possiblyCross.map(individual => {
+    const mutatedChildren = possiblyCross.map((individual) => {
       return individual.mutate(
         this.mutateProbability,
         this.minimum,
@@ -77,6 +85,12 @@ class Population {
         this.ignore
       );
     });
+    if (typeof mutatedChildren[0].getValue(this.equation) !== "number") {
+      mutatedChildren[0] = mom;
+    }
+    if (typeof mutatedChildren[1].getValue(this.equation) !== "number") {
+      mutatedChildren[1] = dad;
+    }
     return mutatedChildren;
   };
 
@@ -85,7 +99,8 @@ class Population {
     cfitness.sort((a, b) => a - b);
     var newFitness = Array(this.currentFitness.length).fill(null);
     for (let i = 0; i < this.currentFitness.length; i++) {
-      newFitness[i] = cfitness.findIndex(f => f === this.currentFitness[i]) + 1;
+      newFitness[i] =
+        cfitness.findIndex((f) => f === this.currentFitness[i]) + 1;
     }
     const fitnessSum = newFitness.reduce((s, f) => s + f, 0);
     let roll = Math.random() * fitnessSum;
