@@ -93,18 +93,18 @@ const Description = ({ setVariable }) => {
             here
           </a>
           .
-          <br />
-          <br />
-          <strong>EXAMPLE:</strong>
-          <br />
-          <div className="text-center">
-            X = 45.231 <br /> DNA = 01000010001101001110110010001011
-          </div>
-          <br />
-          <div className="text-center">
-            X = -38755.174 <br /> DNA = 11000111000101110110001100101100
-          </div>
         </p>
+        <br />
+        <br />
+        <strong>EXAMPLE:</strong>
+        <br />
+        <div className="text-center">
+          X = 45.231 <br /> DNA = 01000010001101001110110010001011
+        </div>
+        <br />
+        <div className="text-center">
+          X = -38755.174 <br /> DNA = 11000111000101110110001100101100
+        </div>
       </div>
       <div className="my-3">
         <h4 className="display-6 font-weight-bold text-primary">
@@ -184,36 +184,36 @@ const Description = ({ setVariable }) => {
         <p className="text-justify">
           In our Algorithm, two random points are selected and the new off
           springs are crossed over based on those points.
-          <br />
-          <br />
-          <strong>EXAMPLE:</strong>
-          <br />
-          <div className="text-center">
-            X1 = 45.231 <br /> DNA1 = 01000010001101001110110010001011
-          </div>
-          <br />
-          <div className="text-center">
-            X2 = -38755.174 <br /> DNA2 = 11000111000101110110001100101100
-          </div>
-          <br />
-          <div className="text-center">
-            <strong>Crossover Points:</strong>
-            <br />
-            p1 = 10 &amp; p2 = 20
-          </div>
-          <br />
-          <div className="text-center">
-            <strong>NEW DNA:</strong>
-            <br />
-            X1 = 37.855998992919921875
-            <br />
-            DNA1 = 01000010000101110110110010001011
-            <br />
-            X2 = -46307.171875
-            <br />
-            DNA2 = 11000111001101001110001100101100
-          </div>
         </p>
+        <br />
+        <br />
+        <strong>EXAMPLE:</strong>
+        <br />
+        <div className="text-center">
+          X1 = 45.231 <br /> DNA1 = 01000010001101001110110010001011
+        </div>
+        <br />
+        <div className="text-center">
+          X2 = -38755.174 <br /> DNA2 = 11000111000101110110001100101100
+        </div>
+        <br />
+        <div className="text-center">
+          <strong>Crossover Points:</strong>
+          <br />
+          p1 = 10 &amp; p2 = 20
+        </div>
+        <br />
+        <div className="text-center">
+          <strong>NEW DNA:</strong>
+          <br />
+          X1 = 37.855998992919921875
+          <br />
+          DNA1 = 01000010000101110110110010001011
+          <br />
+          X2 = -46307.171875
+          <br />
+          DNA2 = 11000111001101001110001100101100
+        </div>
       </div>
       <div className="my-3">
         <h4 className="display-6 font-weight-bold text-primary">MUTATION</h4>
