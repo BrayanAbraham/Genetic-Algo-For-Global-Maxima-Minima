@@ -7,7 +7,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  numberOfVariables: 3,
+  numberOfVariables: 0,
   equation: "",
   minimum: [],
   maximum: [],
@@ -26,12 +26,7 @@ export default (state = initialState, action) => {
         ...state,
         numberOfVariables: action.payload,
         minimum: Array(action.payload).fill(0),
-        maximum: Array(action.payload).fill(100),
-        equation: "x1*((1-(x2^2/x3^2))^(-1/2))",
-        size: 100,
-        crossProbability: 0.3,
-        mutateProbability: 0.1,
-        mode: "maxima",
+        maximum: Array(action.payload).fill(0),
       };
     case CLEAR_SETTING:
       return {

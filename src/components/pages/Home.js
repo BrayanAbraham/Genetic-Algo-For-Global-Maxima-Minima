@@ -14,8 +14,8 @@ const Home = ({
 }) => {
   return (
     <Fragment>
-      <Alert />
       {description ? <Description /> : <Instructions />}
+      <Alert />
       {variablePhase ? <NoOfVariables /> : null}
       {equationPhase ? <Equation /> : null}
       {showPhase ? <Data /> : null}
