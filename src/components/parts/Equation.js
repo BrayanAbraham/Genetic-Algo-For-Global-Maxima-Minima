@@ -98,7 +98,8 @@ const Equation = ({
                   <strong>Logarithm: </strong>log(x1)
                 </li>
                 <li className="list-group-item">
-                  <strong>Multiplication of 2 variables: </strong>x1*x2 instead of x1x2 or xy
+                  <strong>Multiplication of 2 variables: </strong>x1*x2 instead
+                  of x1x2 or xy
                 </li>
               </ul>
             </div>
@@ -261,7 +262,7 @@ const Equation = ({
                       <input
                         type="checkbox"
                         name="ignore"
-                        value={ignore}
+                        checked={ignore}
                         onChange={(e) => setsett({ ...sett, ignore: !ignore })}
                       />
                     </div>
