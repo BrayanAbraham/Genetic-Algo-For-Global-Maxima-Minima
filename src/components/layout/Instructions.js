@@ -11,8 +11,9 @@ const Instructions = () => {
           or Minima. The variables in expressions must be named as x1,x2,x3 and
           so on. The population size must be greater that 10 individuals. The
           Cross Probability and Mutate Probability must be between 0 and 1.
-          Ignore Range is to find the Global Maxima. If Ignore Range is off, the
-          algorithm finds the Local Maxima or Minima. For Best Results:
+          Global Extrema is to find the Global Maxima or Minima, if not selected
+          the algorithm finds the Local Maxima or Minima. If Ignore Range is
+          off, the algorithm finds the Local Maxima or Minima. For Best Results:
           Population Size is 100, Cross Probability is 0.3 and Mutate
           Probability is 0.15.The Performance Graph shows the Best Current
           Fitness and the best fitness found yet. The Y-Axis is the fitness

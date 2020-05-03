@@ -56,8 +56,12 @@ class Population {
 
   nextGeneration = () => {
     let newPopulation = [];
+    const { fitnessSum, newFitness } = this.matingpool();
     while (newPopulation.length < this.currentPopulation.length) {
-      newPopulation = [...newPopulation, ...this.have2children()];
+      newPopulation = [
+        ...newPopulation,
+        ...this.have2children(fitnessSum, newFitness),
+      ];
     }
     if (newPopulation.length > this.currentPopulation.length) {
       newPopulation.splice(-1, 1);
@@ -70,9 +74,9 @@ class Population {
     this.getFittest();
   };
 
-  have2children = () => {
-    const mom = this.select();
-    const dad = this.select();
+  have2children = (fitnessSum, newFitness) => {
+    const mom = this.select(fitnessSum, newFitness);
+    const dad = this.select(fitnessSum, newFitness);
     const possiblyCross =
       Math.random() < this.crossProbability
         ? this.crossover(mom, dad)
@@ -94,7 +98,15 @@ class Population {
     return mutatedChildren;
   };
 
-  select = () => {
+  select = (fitnessSum, newFitness) => {
+    let roll = Math.random() * fitnessSum;
+    for (let i = 0; i < this.currentPopulation.length; i++) {
+      if (roll < newFitness[i]) return this.currentPopulation[i];
+      roll -= newFitness[i];
+    }
+  };
+
+  matingpool = () => {
     var cfitness = this.currentFitness.slice();
     cfitness.sort((a, b) => a - b);
     var newFitness = Array(this.currentFitness.length).fill(null);
@@ -103,11 +115,7 @@ class Population {
         cfitness.findIndex((f) => f === this.currentFitness[i]) + 1;
     }
     const fitnessSum = newFitness.reduce((s, f) => s + f, 0);
-    let roll = Math.random() * fitnessSum;
-    for (let i = 0; i < this.currentPopulation.length; i++) {
-      if (roll < newFitness[i]) return this.currentPopulation[i];
-      roll -= newFitness[i];
-    }
+    return { newFitness, fitnessSum };
   };
 
   crossover = (mom, dad) => {
