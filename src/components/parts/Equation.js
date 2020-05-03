@@ -98,7 +98,7 @@ const Equation = ({
                   <strong>Logarithm: </strong>log(x1)
                 </li>
                 <li className="list-group-item">
-                  Use brackets as much as possible
+                  <strong>Multiplication of 2 variables: </strong>x1*x2 instead of x1x2 or xy
                 </li>
               </ul>
             </div>
