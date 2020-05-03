@@ -263,7 +263,7 @@ const Equation = ({
                   <div className="input-group-append">
                     <input
                       type="text"
-                      value="Global Extrema"
+                      value="Extrema"
                       className="form-control bg-light"
                       disabled
                     />
