@@ -84,15 +84,21 @@ const Equation = ({
                 <li className="list-group-item">
                   <strong>Exponent Function: </strong>exp(x1)
                 </li>
+                <li className="list-group-item">
+                  <strong>Power: </strong>x1^2
+                </li>
               </ul>
             </div>
             <div className="col-md-6">
               <ul className="list-group">
                 <li className="list-group-item">
-                  <strong>Trignometry: </strong>sin(x1),cos(x1),tan(x1).....
+                  <strong>Trigonometry: </strong>sin(x1),cos(x1),tan(x1).....
                 </li>
                 <li className="list-group-item">
                   <strong>Logarithm: </strong>log(x1)
+                </li>
+                <li className="list-group-item">
+                  Use brackets as much as possible
                 </li>
               </ul>
             </div>

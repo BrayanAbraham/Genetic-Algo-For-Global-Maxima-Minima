@@ -16,7 +16,8 @@ const Instructions = () => {
           Population Size is 100, Cross Probability is 0.3 and Mutate
           Probability is 0.15.The Performance Graph shows the Best Current
           Fitness and the best fitness found yet. The Y-Axis is the fitness
-          while X-Axis is the Generation number
+          while X-Axis is the Generation number. The values will remain in range
+          if it is in power of 2.
         </p>
       </div>
     </div>
