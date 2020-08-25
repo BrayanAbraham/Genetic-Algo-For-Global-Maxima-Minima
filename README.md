@@ -32,5 +32,5 @@ Mutate Probability = 0.15.
 
 The Algorithm is in src/genAlgoClasses/
 
-Individual.js contains the Fitness Function and Mutation function
+Individual.js contains the Fitness Function and Mutation function<br/>
 Population.js contains calculation of next generation and crossover
