@@ -1,5 +1,7 @@
 # Genetic Algorithm For Global Maxima Minima
 
+Check out the Application [here](https://genetic-algorithm-for-global-maxima-minima.netlify.app/)
+
 This Application is made to find the Global Maxima or Minima for a
 given equation using a Genetic Algorithm. This Algorithm takes certain
 parameters for input and based on them finds the Global Maxima or
