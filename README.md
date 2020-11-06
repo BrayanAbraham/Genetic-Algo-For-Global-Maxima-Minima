@@ -1,13 +1,17 @@
 # Genetic Algorithm For Global Maxima Minima
 
-Check out the Application [here](https://genetic-algorithm-for-global-maxima-minima.netlify.app/)
+Check out the Application [https://genetic-algorithm-for-global-maxima-minima.netlify.app/](https://genetic-algorithm-for-global-maxima-minima.netlify.app/)
+
+<div style="text-align:center">
+    <img src="./screenshots/Pic 3.png" width="50%"/>
+</div>
 
 This Application is made to find the Global Maxima or Minima for a
 given equation using a Genetic Algorithm. This Algorithm takes certain
 parameters for input and based on them finds the Global Maxima or
 Minima. The Performance Graph shows the Best Current
 Fitness and the best fitness found yet. The Y-Axis is the fitness
-while X-Axis is the Generation number
+while X-Axis is the Generation number. Learn More at [https://genetic-algorithm-for-global-maxima-minima.netlify.app/](https://genetic-algorithm-for-global-maxima-minima.netlify.app/)
 
 ### Instructions to Use the Site
 
@@ -24,15 +28,16 @@ Mutate Probability = 0.15.
 
 ### To use the Site on Local Host:
 
-1. Download Node.js
+1. Download & Install Node.js
 2. Clone or download Git repository
-3. Run 'npm install' in terminal in the folder
-4. Run 'npm start' in the terminal to start
-5. The site will run at localhost:3000
+3. `cd ./Genetic-Algo-For-Global-Maxima-Minima`
+4. `npm install`
+5. `npm start`
+6. In Browser Open `localhost:3000`
 
 ## The Algorithm
 
 The Algorithm is in src/genAlgoClasses/
 
-Individual.js contains the Fitness Function and Mutation function<br/>
-Population.js contains calculation of next generation and crossover
+Individual.js contains the Fitness Function and Mutation function.<br/>
+Population.js contains calculation of next generation and crossover.
