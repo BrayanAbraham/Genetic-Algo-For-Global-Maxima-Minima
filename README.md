@@ -3,7 +3,7 @@
 Check out the Application [https://genetic-algorithm-for-global-maxima-minima.netlify.app/](https://genetic-algorithm-for-global-maxima-minima.netlify.app/)
 
 <div style="text-align:center">
-    <img src="./screenshots/Pic 3.png" width="50%"/>
+    <img src="./screenshots/Pic 3.png"/>
 </div>
 
 This Application is made to find the Global Maxima or Minima for a
