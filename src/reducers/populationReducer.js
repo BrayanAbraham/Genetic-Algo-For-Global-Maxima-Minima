@@ -19,7 +19,7 @@ const initialState = {
   ignore: false,
 };
 
-export default (state = initialState, action) => {
+const populationReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_NUMBER_OF_VARIABLES:
       return {
@@ -68,3 +68,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default populationReducer;

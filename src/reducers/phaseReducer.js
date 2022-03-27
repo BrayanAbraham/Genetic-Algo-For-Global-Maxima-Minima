@@ -12,7 +12,7 @@ const initialState = {
   showPhase: false,
 };
 
-export default (state = initialState, action) => {
+const phaseReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_EQUATION:
       return {
@@ -50,3 +50,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default phaseReducer;
